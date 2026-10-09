@@ -1,11 +1,12 @@
-import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
-import { arch, cpus, platform, release, totalmem } from "node:os";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import type { BenchmarkMetadata } from "./metadata";
 import type { ChartConfiguration } from "chart.js";
 import { ChartJSNodeCanvas } from "chartjs-node-canvas";
 
+const metadata: BenchmarkMetadata = JSON.parse(await readFile("result/metadata.json", "utf-8"));
 const FILES_SOURCE_URL_PREFIX =
-  "https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main";
+  `https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/${metadata.fixturesCommit}`;
 
 const PARSERS = {
   yuku: {
@@ -31,6 +32,13 @@ const PARSERS = {
     url: "https://github.com/swc-project/swc",
     semantic: false,
   },
+  swc_next: {
+    name: "SWC Next",
+    language: "Rust",
+    description: "The next-generation SWC parser, built from the local swc-next Rust checkout.",
+    url: "https://github.com/swc-project/swc-next",
+    semantic: false,
+  },
   yuku_semantic: {
     name: "Yuku + Semantic",
     language: "Zig",
@@ -45,14 +53,23 @@ const PARSERS = {
     url: "https://github.com/oxc-project/oxc",
     semantic: true,
   },
+  swc_next_semantic: {
+    name: "SWC Next + Semantic",
+    language: "Rust",
+    description: "SWC Next parser with semantic analysis and scope-dependent syntax checks.",
+    url: "https://github.com/swc-project/swc-next",
+    semantic: true,
+  },
 } as const;
 
 const CHART_COLORS: Record<string, string> = {
   yuku: "#FF6B35",
   oxc: "#F72585",
   swc: "#4CC9F0",
+  swc_next: "#2DBD85",
   yuku_semantic: "#E8890C",
   oxc_semantic: "#B5179E",
+  swc_next_semantic: "#218F65",
 };
 
 const FILES = {
@@ -273,7 +290,7 @@ async function generateBenchmarksSection(): Promise<string> {
   for (const [key, file] of Object.entries(FILES)) {
     const fileKey = key as FileKey;
     const fileName = file.path.split("/").pop()!;
-    const fileSize = (await stat(join(process.cwd(), file.path))).size;
+    const fileSize = metadata.files.find((entry) => entry.path === file.path)!.bytes;
     const data = await readBenchmarkResults(fileKey);
     const entries = getParserEntries(data, false);
 
@@ -305,18 +322,18 @@ async function generateSemanticSection(): Promise<string> {
   );
   lines.push("");
   lines.push(
-    `Parsers handle this differently: SWC checks some scope-dependent errors during parsing itself, while Yuku and Oxc defer them entirely to a separate semantic analysis pass. This keeps parsing fast and lets each consumer opt in only to the work it actually needs. A formatter, for example, only needs the AST and should not pay the cost of scope resolution.`,
+    `Parsers handle this differently: SWC checks some scope-dependent errors during parsing itself, while Yuku, Oxc, and SWC Next provide a separate semantic analysis pass. This lets each consumer opt in to scope resolution when needed.`,
   );
   lines.push("");
   lines.push(
-    `The benchmarks below measure parsing followed by this additional pass, which builds a scope tree and symbol table, resolves identifier references to their declarations, and reports the remaining early errors. Together, parsing and semantic analysis cover the full set of early errors required by the specification.`,
+    `The benchmarks below measure parsing followed by this additional pass, which builds scopes and symbols, resolves identifier references, and checks scope-dependent early errors. Oxc enables \`with_check_syntax_error(true)\`; SWC Next enables \`AnalyzeOptions::check_syntax\`. These timings do not establish equivalent conformance coverage.`,
   );
   lines.push("");
 
   for (const [key, file] of Object.entries(FILES)) {
     const fileKey = key as FileKey;
     const fileName = file.path.split("/").pop()!;
-    const fileSize = (await stat(join(process.cwd(), file.path))).size;
+    const fileSize = metadata.files.find((entry) => entry.path === file.path)!.bytes;
     const data = await readBenchmarkResults(fileKey);
     const entries = getParserEntries(data, true);
     if (entries.every((e) => e.result == null)) continue;
@@ -355,16 +372,10 @@ function generateParsersSection(): string {
   return lines.join("\n");
 }
 
-function getSystemInfo(): string {
-  const cpu = cpus()[0];
-  const cpuModel = cpu?.model || "Unknown CPU";
-  const cpuCores = cpus().length;
-  const totalMemoryGB = (totalmem() / (1024 * 1024 * 1024)).toFixed(0);
-  const os = platform();
-  const osArch = arch();
-  const osRelease = release();
+function getSystemInfo(metadata: BenchmarkMetadata): string {
+  const { platform: os, arch: osArch, release: osRelease, cpu: cpuModel, cores: cpuCores, memoryGB: totalMemoryGB } = metadata.system;
   const osName =
-    os === "darwin" ? "macOS" : os === "win32" ? "Windows" : os === "linux" ? "Linux" : os;
+    os === "darwin" ? "macOS (Darwin kernel)" : os === "win32" ? "Windows" : os === "linux" ? "Linux" : os;
 
   return `## System
 
@@ -373,7 +384,15 @@ function getSystemInfo(): string {
 | OS | ${osName} ${osRelease} (${osArch}) |
 | CPU | ${cpuModel} |
 | Cores | ${cpuCores} |
-| Memory | ${totalMemoryGB} GB |`;
+| Memory | ${totalMemoryGB} GB |
+| Run started (UTC) | ${metadata.startedAt} |
+| Rust | ${metadata.toolchains.rustc} |
+| Zig | ${metadata.toolchains.zig} |
+| Bun | ${metadata.toolchains.bun} |
+
+Oxc: \`${metadata.parsers.oxc_parser}\`; SWC: \`${metadata.parsers.swc_ecma_parser}\`; SWC Next: \`${metadata.parsers.swc_next_ecma_parser}\` at [\`${metadata.swcNext.commit}\`](https://github.com/swc-project/swc-next/commit/${metadata.swcNext.commit})${metadata.swcNext.dirty ? " (modified checkout)" : " (clean checkout)"}.
+
+Yuku source: [pinned revision](${metadata.yuku.replace("git+", "").replace("/?ref=HEAD#", "/commit/")}). Fixture source: [\`${metadata.fixturesCommit}\`](https://github.com/yuku-toolchain/parser-benchmark-files/commit/${metadata.fixturesCommit}). Toolchain versions, input sizes and SHA-256 hashes, and binary hashes are saved in [result/metadata.json](result/metadata.json).`;
 }
 
 function generateRunSection(): string {
@@ -383,7 +402,8 @@ function generateRunSection(): string {
 
 - [Bun](https://bun.sh/) - JavaScript runtime and package manager
 - [Rust](https://www.rust-lang.org/tools/install) - For building Rust-based parsers
-- [Zig](https://ziglang.org/download/) - For building Zig-based parsers (requires nightly/development version)
+- [Zig](https://ziglang.org/download/) - For building Zig-based parsers (tested version recorded above)
+- A local [SWC Next](https://github.com/swc-project/swc-next) checkout next to this repository (\`../swc-next\`); the Rust suite uses path dependencies
 
 ### Steps
 
@@ -394,16 +414,25 @@ git clone https://github.com/yuku-toolchain/ecmascript-parser-benchmark-native.g
 cd ecmascript-parser-benchmark-native
 \`\`\`
 
+If SWC Next is not already checked out, run \`git clone https://github.com/swc-project/swc-next.git ../swc-next\`. To reproduce the recorded source, check out the SWC Next commit listed above in a clean sibling checkout. An existing local checkout is used as-is.
+
 2. Install dependencies:
 
 \`\`\`bash
-bun install
+bun install --frozen-lockfile
 \`\`\`
 
 3. Download the benchmark files:
 
 \`\`\`bash
 bun load-files
+\`\`\`
+
+The downloader follows the fixture repository's HEAD. To use the exact inputs measured here:
+
+\`\`\`bash
+git -C files fetch --depth 1 origin ${metadata.fixturesCommit}
+git -C files checkout --detach ${metadata.fixturesCommit}
 \`\`\`
 
 4. Build the parsers:
@@ -418,7 +447,7 @@ bun run build
 bun bench
 \`\`\`
 
-This will run benchmarks on all test files. Results are saved to the \`result/\` directory.`;
+This runs all suites and regenerates the README and charts. Results and run metadata are saved to \`result/\`. Use \`bun readme\` to regenerate the report from saved results without rerunning benchmarks.`;
 }
 
 function generateMethodologySection(): string {
@@ -426,7 +455,11 @@ function generateMethodologySection(): string {
 
 Parsing is timed in-process to isolate it from process startup, dynamic linking, file I/O, and memory teardown, which would otherwise dominate the measurement on smaller files.
 
-The source is read once, then each parser runs 50 warmup iterations followed by 300 timed iterations. A monotonic clock wraps only the parse call (plus the semantic pass for the semantic variants); allocation and teardown happen outside the timed region, and the result passes through an optimization barrier so the work cannot be elided. Reported figures are the median, minimum, and 99th percentile of the timed runs.
+The source is read once, then each parser runs 50 warmup iterations followed by 300 timed iterations. A monotonic clock wraps parser construction and parsing (plus the semantic pass for the semantic variants). Arena construction and teardown happen outside the timed region; allocations performed during parsing remain timed. The result passes through an optimization barrier so the work cannot be elided. Reported figures are the median, minimum, and 99th percentile of the timed runs.
+
+SWC Next uses \`NoTokenParserConfig\`, \`Lang::from_path\` (including declaration-file mode for \`.d.ts\`), module mode, and the default comment and parenthesis handling. Its parser and semantic diagnostics are checked outside the timed region. Rust arena-based parsers create a fresh arena per iteration; Yuku retains arena capacity between iterations. Each suite keeps its parser's existing AST representation and defaults, so these are end-to-end parser API timings rather than identical AST workloads. All suites are rerun locally in sequence; historical timings are not mixed into the tables.
+
+SWC Next is built as a separate native binary in \`rust-next/\` because its allocator dependency conflicts with the version pinned by Oxc 0.102. The Rust binaries share the same measurement helper, release profile, and global allocator, and each has a committed Cargo lockfile.
 
 Binaries are built with release optimizations: Rust with \`cargo build --release\` (LTO, single codegen unit, symbol stripping) and Zig with \`zig build --release=fast\`. Each uses a fast general-purpose allocator (Rust \`mimalloc\`, Zig \`smp_allocator\`).`;
 }
@@ -437,7 +470,7 @@ async function main() {
     "",
     "Benchmarks for ECMAScript parsers compiled to native binaries (Zig, Rust), measuring raw parsing speed without any JavaScript runtime overhead.",
     "",
-    getSystemInfo(),
+    getSystemInfo(metadata),
     "",
     generateParsersSection(),
     await generateBenchmarksSection(),
@@ -451,4 +484,7 @@ async function main() {
   console.log("README.md generated successfully!");
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

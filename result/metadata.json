@@ -1,0 +1,68 @@
+{
+  "startedAt": "2026-10-09T08:30:58.956Z",
+  "system": {
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "arm64",
+    "cpu": "Apple M5 Max",
+    "cores": 18,
+    "memoryGB": 64
+  },
+  "toolchains": {
+    "bun": "1.4.0",
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+    "zig": "0.16.0"
+  },
+  "parsers": {
+    "oxc_parser": "0.102.0",
+    "swc_ecma_parser": "33.0.1",
+    "swc_next_ecma_parser": "0.2.3"
+  },
+  "swcNext": {
+    "commit": "5458b99247da8e05ddbe710458b2a439b56278ec",
+    "dirty": false
+  },
+  "yuku": "git+https://github.com/yuku-toolchain/yuku/?ref=HEAD#4d29aa321e40cc1d04f561c58f25f56883489850",
+  "fixturesCommit": "e25ab06730f743838b2c693d2126ea0162a661c6",
+  "warmup": 50,
+  "runs": 300,
+  "files": [
+    {
+      "path": "files/typescript.js",
+      "bytes": 8207497,
+      "sha256": "804f9c1b6c64568c39dd48eee88b77ba92d0b5d0f44f425bc96bcfe052824644"
+    },
+    {
+      "path": "files/checker.ts",
+      "bytes": 3097339,
+      "sha256": "ae146e68e6a201befeb45683310d13fc5eaa8875146daf046203a49648286ab1"
+    },
+    {
+      "path": "files/lib.dom.d.ts",
+      "bytes": 2349483,
+      "sha256": "d6b1eba8496bdd0eed6fc8a685768fe01b2da4a0388b5fe7df558290bffcf32f"
+    },
+    {
+      "path": "files/react.js",
+      "bytes": 72141,
+      "sha256": "ec670cc82d2aac81844bae49353d11bef1a8a21e727290a3bcc24a2928839496"
+    }
+  ],
+  "binaries": [
+    {
+      "path": "./bin/zig",
+      "sha256": "6aba4b50170bdc4be39cbc3ba4fa2e9a13e8be30bbfd2a06862a19658428a593"
+    },
+    {
+      "path": "./bin/rust",
+      "sha256": "b9f1a1591176059e5363d5471492487224baa0e789be790d198ad5f9520c151c"
+    },
+    {
+      "path": "./bin/swc-next",
+      "sha256": "9d584a0e47169175e42bdbc21840d0d5060649eb38ec2b91d6977dec5cebea63"
+    }
+  ],
+  "cargoLockSha256": "78e995407ed2d93bf105e7febd5e4aaf6d8d1458a68222fe14ee702063a6e602",
+  "swcNextCargoLockSha256": "1434ccdcb38c4b1524db8d8f7b15aafb39815a38497e54ef68590d8068f9249b",
+  "completedAt": "2026-10-09T08:32:47.274Z"
+}

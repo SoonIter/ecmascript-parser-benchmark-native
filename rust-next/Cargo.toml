@@ -1,0 +1,21 @@
+[package]
+name = "swc_next_parser"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Keep swc-next next to this repository so the native suite uses the local checkout.
+swc_next_allocator = { path = "../../swc-next/crates/swc_allocator" }
+swc_next_ecma_ast = { path = "../../swc-next/crates/swc_ecma_ast" }
+swc_next_ecma_parser = { path = "../../swc-next/crates/swc_ecma_parser" }
+swc_next_ecma_semantic = { path = "../../swc-next/crates/swc_ecma_semantic" }
+
+mimalloc = { package = "mimalloc-safe", version = "0.1.52" }
+
+[profile.release]
+opt-level     = 3
+lto           = "fat"
+codegen-units = 1
+strip         = "symbols"
+debug         = false
+panic         = "abort"

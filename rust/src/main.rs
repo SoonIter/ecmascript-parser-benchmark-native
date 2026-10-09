@@ -12,35 +12,22 @@ use swc_ecma_parser::{EsSyntax, Parser as SwcParser, StringInput, Syntax, TsSynt
 #[global_allocator]
 static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 
-const WARMUP: usize = 50;
-const RUNS: usize = 300;
-
-struct Stats {
-    median: f64,
-    min: f64,
-    p99: f64,
-}
-
-fn measure(mut sample: impl FnMut() -> u64) -> Stats {
-    for _ in 0..WARMUP {
-        sample();
-    }
-    let mut secs: Vec<f64> = (0..RUNS).map(|_| sample() as f64 / 1e9).collect();
-    secs.sort_by(|a, b| a.partial_cmp(b).unwrap());
-    Stats {
-        median: secs[RUNS / 2],
-        min: secs[0],
-        p99: secs[RUNS * 99 / 100],
-    }
-}
+mod measure;
+use measure::{Stats, measure};
 
 fn swc_syntax(path: &str) -> Syntax {
     if path.ends_with(".tsx") {
-        Syntax::Typescript(TsSyntax { tsx: true, ..Default::default() })
+        Syntax::Typescript(TsSyntax {
+            tsx: true,
+            ..Default::default()
+        })
     } else if path.ends_with(".ts") {
         Syntax::Typescript(TsSyntax::default())
     } else if path.ends_with(".jsx") {
-        Syntax::Es(EsSyntax { jsx: true, ..Default::default() })
+        Syntax::Es(EsSyntax {
+            jsx: true,
+            ..Default::default()
+        })
     } else {
         Syntax::Es(EsSyntax::default())
     }

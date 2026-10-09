@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { collectMetadata } from "./metadata";
 
 const FILES = [
   { key: "typescript", path: "files/typescript.js" },
@@ -8,7 +9,8 @@ const FILES = [
   { key: "react", path: "files/react.js" },
 ] as const;
 
-const BINS = ["./bin/zig", "./bin/rust"] as const;
+const BINS = ["./bin/zig", "./bin/rust", "./bin/swc-next"] as const;
+const PARSERS = ["yuku", "yuku_semantic", "oxc", "oxc_semantic", "swc", "swc_next", "swc_next_semantic"];
 
 interface Result {
   parser: string;
@@ -28,6 +30,7 @@ const ms = (s: number) => `${(s * 1000).toFixed(3)} ms`;
 const mbps = (bytes: number, s: number) => `${(bytes / (1024 * 1024) / s).toFixed(1)} MB/s`;
 
 const paths = FILES.map((f) => f.path);
+const metadata = await collectMetadata(paths, BINS);
 const results = BINS.flatMap((bin) => {
   console.log(`Running ${bin} ...`);
   return runBench(bin, paths);
@@ -40,6 +43,17 @@ for (const file of FILES) {
     .filter((r) => r.file === file.path)
     .map(({ parser, median, min, p99 }) => ({ parser, median, min, p99 }));
 
+  if (
+    entries.length !== PARSERS.length ||
+    PARSERS.some((parser) => !entries.some((r) => r.parser === parser)) ||
+    entries.some((r) =>
+      ![r.min, r.median, r.p99].every((n) => Number.isFinite(n) && n > 0) ||
+      r.min > r.median || r.median > r.p99,
+    )
+  ) {
+    throw new Error(`Incomplete or invalid benchmark results for ${file.path}`);
+  }
+
   await writeFile(
     join(process.cwd(), "result", `${file.key}.json`),
     `${JSON.stringify({ results: entries }, null, 2)}\n`,
@@ -51,3 +65,5 @@ for (const file of FILES) {
     console.log(`  ${r.parser.padEnd(16)} ${ms(r.median).padEnd(12)} ${mbps(fileSize, r.median)}`);
   }
 }
+
+await writeFile("result/metadata.json", `${JSON.stringify({ ...metadata, completedAt: new Date().toISOString() }, null, 2)}\n`);

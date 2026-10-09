@@ -5,9 +5,10 @@
 	"scripts": {
 		"bench": "bun scripts/run-bench.ts && bun readme",
 		"load-files": "bun scripts/load-files.ts",
-		"build": "bun build:zig && bun build:rust",
+		"build": "bun build:zig && bun build:rust && bun build:swc-next",
 		"build:zig": "cd zig && zig build --release=fast && mkdir -p ../bin && cp ./zig-out/bin/zig ../bin/zig",
-		"build:rust": "cd rust && cargo build --release && mkdir -p ../bin && cp ./target/release/rust_parsers ../bin/rust",
+		"build:rust": "cd rust && cargo build --release --locked && mkdir -p ../bin && cp ./target/release/rust_parsers ../bin/rust",
+		"build:swc-next": "cd rust-next && cargo build --release --locked && mkdir -p ../bin && cp ./target/release/swc_next_parser ../bin/swc-next",
 		"readme": "bun scripts/generate-readme.ts",
 		"update-parsers": "cd rust && cargo update && cd .. && cd zig && zig fetch --save git+https://github.com/yuku-toolchain/yuku/#HEAD"
 	},
