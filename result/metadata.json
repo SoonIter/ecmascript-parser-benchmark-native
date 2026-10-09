@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-09T08:30:58.956Z",
+  "startedAt": "2026-10-09T09:37:45.989Z",
   "system": {
     "platform": "darwin",
     "release": "25.6.0",
@@ -16,11 +16,97 @@
   "parsers": {
     "oxc_parser": "0.102.0",
     "swc_ecma_parser": "33.0.1",
-    "swc_next_ecma_parser": "0.2.3"
+    "swc_next_ecma_parser": "0.2.4"
   },
   "swcNext": {
-    "commit": "5458b99247da8e05ddbe710458b2a439b56278ec",
-    "dirty": false
+    "registry": "crates.io",
+    "crates": [
+      {
+        "name": "swc_next_allocator",
+        "version": "0.2.4",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "60df671b4a07b5d7f5dc28c06419124a7f20fa0e1097e42622fd79aeedb98dbd",
+        "dependencies": [
+          "allocator-api2",
+          "bumpalo",
+          "hashbrown",
+          "rustc-hash"
+        ]
+      },
+      {
+        "name": "swc_next_ast_macros",
+        "version": "0.2.4",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "47643d901b4613dead3a8c0ab44184220d24c725ed385457427ee2381fa4e1d3",
+        "dependencies": [
+          "proc-macro2",
+          "quote",
+          "syn 3.0.6"
+        ]
+      },
+      {
+        "name": "swc_next_ecma_ast",
+        "version": "0.2.4",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "f8666167d1bc7c2d04b7f2308105d66889c697ee88fbb534df7a00f4e8c12a60",
+        "dependencies": [
+          "oxc_index",
+          "swc_next_allocator",
+          "swc_next_ast_macros",
+          "unicode-id-start"
+        ]
+      },
+      {
+        "name": "swc_next_ecma_parser",
+        "version": "0.2.4",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "16d369fb15b31cd5d2fad2ff45231b89fb987a9148997ddaeff5ad4190b33198",
+        "dependencies": [
+          "bitflags",
+          "memchr",
+          "rustc-hash",
+          "swc_next_allocator",
+          "swc_next_ecma_ast",
+          "swc_next_simd"
+        ]
+      },
+      {
+        "name": "swc_next_ecma_semantic",
+        "version": "0.2.4",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "66343267e32f5ce6f2228c0bb81061ae4ae79701a0fd40f6cfe5ddb7a864c1e2",
+        "dependencies": [
+          "bitflags",
+          "hashbrown",
+          "memchr",
+          "oxc_index",
+          "rustc-hash",
+          "swc_next_allocator",
+          "swc_next_ecma_ast",
+          "swc_next_regular_expression",
+          "zmij_ecma"
+        ]
+      },
+      {
+        "name": "swc_next_regular_expression",
+        "version": "0.2.4",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "a164c3161da895f5156ff4ec7807cb9e5905d46f748aa2e361b2bed8fc653e8b",
+        "dependencies": [
+          "bitflags",
+          "phf",
+          "rustc-hash",
+          "swc_next_allocator",
+          "unicode-id-start"
+        ]
+      },
+      {
+        "name": "swc_next_simd",
+        "version": "0.2.4",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "2160e1cd74c30cd68a6721f605cfa492ec60437dc7d34e3fd425b3d32c99899c"
+      }
+    ]
   },
   "yuku": "git+https://github.com/yuku-toolchain/yuku/?ref=HEAD#4d29aa321e40cc1d04f561c58f25f56883489850",
   "fixturesCommit": "e25ab06730f743838b2c693d2126ea0162a661c6",
@@ -59,10 +145,10 @@
     },
     {
       "path": "./bin/swc-next",
-      "sha256": "9d584a0e47169175e42bdbc21840d0d5060649eb38ec2b91d6977dec5cebea63"
+      "sha256": "ea20d94d8f5c172a6d109b94f7ca87baa67c69b7debaaf71fa19e9b833d7eada"
     }
   ],
   "cargoLockSha256": "78e995407ed2d93bf105e7febd5e4aaf6d8d1458a68222fe14ee702063a6e602",
-  "swcNextCargoLockSha256": "1434ccdcb38c4b1524db8d8f7b15aafb39815a38497e54ef68590d8068f9249b",
-  "completedAt": "2026-10-09T08:32:47.274Z"
+  "swcNextCargoLockSha256": "f8f8cefa8aa2feb35f9c8fb591d94ea90e1bb3b80ec542006cae9ad910199cb8",
+  "completedAt": "2026-10-09T09:39:28.182Z"
 }

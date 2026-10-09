@@ -35,7 +35,7 @@ const PARSERS = {
   swc_next: {
     name: "SWC Next",
     language: "Rust",
-    description: "The next-generation SWC parser, built from the local swc-next Rust checkout.",
+    description: "The next-generation SWC parser, built from its published crates.io release.",
     url: "https://github.com/swc-project/swc-next",
     semantic: false,
   },
@@ -390,7 +390,7 @@ function getSystemInfo(metadata: BenchmarkMetadata): string {
 | Zig | ${metadata.toolchains.zig} |
 | Bun | ${metadata.toolchains.bun} |
 
-Oxc: \`${metadata.parsers.oxc_parser}\`; SWC: \`${metadata.parsers.swc_ecma_parser}\`; SWC Next: \`${metadata.parsers.swc_next_ecma_parser}\` at [\`${metadata.swcNext.commit}\`](https://github.com/swc-project/swc-next/commit/${metadata.swcNext.commit})${metadata.swcNext.dirty ? " (modified checkout)" : " (clean checkout)"}.
+Oxc: \`${metadata.parsers.oxc_parser}\`; SWC: \`${metadata.parsers.swc_ecma_parser}\`; SWC Next: \`${metadata.parsers.swc_next_ecma_parser}\` from [crates.io](https://crates.io/crates/swc_next_ecma_parser/${metadata.parsers.swc_next_ecma_parser}).
 
 Yuku source: [pinned revision](${metadata.yuku.replace("git+", "").replace("/?ref=HEAD#", "/commit/")}). Fixture source: [\`${metadata.fixturesCommit}\`](https://github.com/yuku-toolchain/parser-benchmark-files/commit/${metadata.fixturesCommit}). Toolchain versions, input sizes and SHA-256 hashes, and binary hashes are saved in [result/metadata.json](result/metadata.json).`;
 }
@@ -403,7 +403,6 @@ function generateRunSection(): string {
 - [Bun](https://bun.sh/) - JavaScript runtime and package manager
 - [Rust](https://www.rust-lang.org/tools/install) - For building Rust-based parsers
 - [Zig](https://ziglang.org/download/) - For building Zig-based parsers (tested version recorded above)
-- A local [SWC Next](https://github.com/swc-project/swc-next) checkout next to this repository (\`../swc-next\`); the Rust suite uses path dependencies
 
 ### Steps
 
@@ -414,7 +413,7 @@ git clone https://github.com/yuku-toolchain/ecmascript-parser-benchmark-native.g
 cd ecmascript-parser-benchmark-native
 \`\`\`
 
-If SWC Next is not already checked out, run \`git clone https://github.com/swc-project/swc-next.git ../swc-next\`. To reproduce the recorded source, check out the SWC Next commit listed above in a clean sibling checkout. An existing local checkout is used as-is.
+SWC Next dependencies are pinned to the published crates.io release in \`rust-next/Cargo.toml\` and \`rust-next/Cargo.lock\`. Cargo downloads those registry packages; no sibling SWC Next repository or path dependency is used. Package versions, registry sources, and checksums are recorded in \`result/metadata.json\`.
 
 2. Install dependencies:
 

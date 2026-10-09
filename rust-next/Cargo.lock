@@ -234,7 +234,9 @@ checksum = "33f4fe9184a62d842c9ef383018f3306d8ba224fd9d836f56d7288308847c256"
 
 [[package]]
 name = "swc_next_allocator"
-version = "0.2.3"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "60df671b4a07b5d7f5dc28c06419124a7f20fa0e1097e42622fd79aeedb98dbd"
 dependencies = [
  "allocator-api2",
  "bumpalo",
@@ -244,16 +246,20 @@ dependencies = [
 
 [[package]]
 name = "swc_next_ast_macros"
-version = "0.2.3"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "47643d901b4613dead3a8c0ab44184220d24c725ed385457427ee2381fa4e1d3"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.119",
+ "syn 3.0.6",
 ]
 
 [[package]]
 name = "swc_next_ecma_ast"
-version = "0.2.3"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f8666167d1bc7c2d04b7f2308105d66889c697ee88fbb534df7a00f4e8c12a60"
 dependencies = [
  "oxc_index",
  "swc_next_allocator",
@@ -263,18 +269,23 @@ dependencies = [
 
 [[package]]
 name = "swc_next_ecma_parser"
-version = "0.2.3"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "16d369fb15b31cd5d2fad2ff45231b89fb987a9148997ddaeff5ad4190b33198"
 dependencies = [
  "bitflags",
  "memchr",
  "rustc-hash",
  "swc_next_allocator",
  "swc_next_ecma_ast",
+ "swc_next_simd",
 ]
 
 [[package]]
 name = "swc_next_ecma_semantic"
-version = "0.2.3"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "66343267e32f5ce6f2228c0bb81061ae4ae79701a0fd40f6cfe5ddb7a864c1e2"
 dependencies = [
  "bitflags",
  "hashbrown",
@@ -300,7 +311,9 @@ dependencies = [
 
 [[package]]
 name = "swc_next_regular_expression"
-version = "0.2.3"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a164c3161da895f5156ff4ec7807cb9e5905d46f748aa2e361b2bed8fc653e8b"
 dependencies = [
  "bitflags",
  "phf",
@@ -308,6 +321,12 @@ dependencies = [
  "swc_next_allocator",
  "unicode-id-start",
 ]
+
+[[package]]
+name = "swc_next_simd"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2160e1cd74c30cd68a6721f605cfa492ec60437dc7d34e3fd425b3d32c99899c"
 
 [[package]]
 name = "syn"

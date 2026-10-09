@@ -10,12 +10,12 @@ Benchmarks for ECMAScript parsers compiled to native binaries (Zig, Rust), measu
 | CPU | Apple M5 Max |
 | Cores | 18 |
 | Memory | 64 GB |
-| Run started (UTC) | 2026-10-09T08:30:58.956Z |
+| Run started (UTC) | 2026-10-09T09:37:45.989Z |
 | Rust | rustc 1.98.0 (88d9e12ae 2026-08-18) |
 | Zig | 0.16.0 |
 | Bun | 1.4.0 |
 
-Oxc: `0.102.0`; SWC: `33.0.1`; SWC Next: `0.2.3` at [`5458b99247da8e05ddbe710458b2a439b56278ec`](https://github.com/swc-project/swc-next/commit/5458b99247da8e05ddbe710458b2a439b56278ec) (clean checkout).
+Oxc: `0.102.0`; SWC: `33.0.1`; SWC Next: `0.2.4` from [crates.io](https://crates.io/crates/swc_next_ecma_parser/0.2.4).
 
 Yuku source: [pinned revision](https://github.com/yuku-toolchain/yuku/commit/4d29aa321e40cc1d04f561c58f25f56883489850). Fixture source: [`e25ab06730f743838b2c693d2126ea0162a661c6`](https://github.com/yuku-toolchain/parser-benchmark-files/commit/e25ab06730f743838b2c693d2126ea0162a661c6). Toolchain versions, input sizes and SHA-256 hashes, and binary hashes are saved in [result/metadata.json](result/metadata.json).
 
@@ -43,7 +43,7 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 **Language:** Rust
 
-The next-generation SWC parser, built from the local swc-next Rust checkout.
+The next-generation SWC parser, built from its published crates.io release.
 
 ## Benchmarks
 
@@ -55,10 +55,10 @@ The next-generation SWC parser, built from the local swc-next Rust checkout.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku | 14.39 ms | 14.15 ms | 15.49 ms | 1.00× |
-| SWC Next | 14.99 ms | 14.72 ms | 17.58 ms | 1.04× |
-| Oxc | 21.43 ms | 20.56 ms | 23.89 ms | 1.49× |
-| SWC | 34.28 ms | 33.39 ms | 42.58 ms | 2.38× |
+| SWC Next | 13.88 ms | 13.28 ms | 19.94 ms | 1.00× |
+| Yuku | 14.04 ms | 13.48 ms | 16.07 ms | 1.01× |
+| Oxc | 20.08 ms | 19.56 ms | 21.16 ms | 1.45× |
+| SWC | 33.13 ms | 32.25 ms | 42.55 ms | 2.39× |
 
 ### [checker.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/checker.ts)
 
@@ -68,10 +68,10 @@ The next-generation SWC parser, built from the local swc-next Rust checkout.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku | 5.02 ms | 4.80 ms | 6.27 ms | 1.00× |
-| SWC Next | 5.09 ms | 4.96 ms | 7.02 ms | 1.01× |
-| Oxc | 7.07 ms | 6.69 ms | 8.39 ms | 1.41× |
-| SWC | 11.24 ms | 10.86 ms | 11.81 ms | 2.24× |
+| Yuku | 4.75 ms | 4.54 ms | 4.99 ms | 1.00× |
+| SWC Next | 4.79 ms | 4.52 ms | 6.21 ms | 1.01× |
+| Oxc | 6.64 ms | 6.37 ms | 7.93 ms | 1.40× |
+| SWC | 12.07 ms | 10.71 ms | 19.00 ms | 2.54× |
 
 ### [lib.dom.d.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/lib.dom.d.ts)
 
@@ -81,10 +81,10 @@ The next-generation SWC parser, built from the local swc-next Rust checkout.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Oxc | 1.84 ms | 1.81 ms | 1.99 ms | 1.00× |
-| Yuku | 1.88 ms | 1.72 ms | 2.37 ms | 1.02× |
-| SWC Next | 1.93 ms | 1.88 ms | 2.60 ms | 1.05× |
-| SWC | 4.03 ms | 3.88 ms | 4.80 ms | 2.19× |
+| SWC Next | 1.46 ms | 1.40 ms | 2.04 ms | 1.00× |
+| Yuku | 1.72 ms | 1.61 ms | 1.78 ms | 1.17× |
+| Oxc | 1.84 ms | 1.79 ms | 2.04 ms | 1.26× |
+| SWC | 3.95 ms | 3.79 ms | 6.34 ms | 2.71× |
 
 ### [react.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/react.js)
 
@@ -94,10 +94,10 @@ The next-generation SWC parser, built from the local swc-next Rust checkout.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next | 0.08 ms | 0.08 ms | 0.11 ms | 1.00× |
-| Yuku | 0.08 ms | 0.08 ms | 0.14 ms | 1.05× |
-| Oxc | 0.13 ms | 0.13 ms | 0.26 ms | 1.65× |
-| SWC | 0.23 ms | 0.22 ms | 0.29 ms | 2.91× |
+| SWC Next | 0.07 ms | 0.06 ms | 0.14 ms | 1.00× |
+| Yuku | 0.08 ms | 0.08 ms | 0.12 ms | 1.19× |
+| Oxc | 0.13 ms | 0.12 ms | 0.23 ms | 1.91× |
+| SWC | 0.24 ms | 0.22 ms | 0.50 ms | 3.49× |
 
 ## Semantic
 
@@ -113,9 +113,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 28.55 ms | 27.85 ms | 32.24 ms | 1.00× |
-| Yuku + Semantic | 34.68 ms | 33.87 ms | 44.00 ms | 1.21× |
-| Oxc + Semantic | 47.88 ms | 46.35 ms | 55.13 ms | 1.68× |
+| SWC Next + Semantic | 26.91 ms | 26.08 ms | 32.87 ms | 1.00× |
+| Yuku + Semantic | 33.90 ms | 32.91 ms | 39.66 ms | 1.26× |
+| Oxc + Semantic | 45.80 ms | 44.52 ms | 47.97 ms | 1.70× |
 
 ### [checker.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/checker.ts)
 
@@ -123,9 +123,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 10.29 ms | 10.01 ms | 11.18 ms | 1.00× |
-| Yuku + Semantic | 13.15 ms | 12.30 ms | 17.10 ms | 1.28× |
-| Oxc + Semantic | 15.86 ms | 15.23 ms | 17.10 ms | 1.54× |
+| SWC Next + Semantic | 9.78 ms | 9.59 ms | 10.50 ms | 1.00× |
+| Yuku + Semantic | 12.04 ms | 11.76 ms | 12.53 ms | 1.23× |
+| Oxc + Semantic | 15.88 ms | 15.07 ms | 24.68 ms | 1.62× |
 
 ### [lib.dom.d.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/lib.dom.d.ts)
 
@@ -133,9 +133,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 3.07 ms | 3.00 ms | 3.60 ms | 1.00× |
-| Yuku + Semantic | 3.47 ms | 3.25 ms | 4.16 ms | 1.13× |
-| Oxc + Semantic | 3.89 ms | 3.77 ms | 4.36 ms | 1.26× |
+| SWC Next + Semantic | 2.63 ms | 2.54 ms | 3.71 ms | 1.00× |
+| Yuku + Semantic | 3.26 ms | 3.12 ms | 3.41 ms | 1.24× |
+| Oxc + Semantic | 3.76 ms | 3.67 ms | 4.11 ms | 1.43× |
 
 ### [react.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/react.js)
 
@@ -143,9 +143,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 0.14 ms | 0.14 ms | 0.24 ms | 1.00× |
-| Yuku + Semantic | 0.21 ms | 0.21 ms | 0.33 ms | 1.49× |
-| Oxc + Semantic | 0.28 ms | 0.27 ms | 0.34 ms | 1.97× |
+| SWC Next + Semantic | 0.13 ms | 0.13 ms | 0.26 ms | 1.00× |
+| Yuku + Semantic | 0.20 ms | 0.18 ms | 0.26 ms | 1.51× |
+| Oxc + Semantic | 0.28 ms | 0.27 ms | 0.43 ms | 2.14× |
 
 ## Run Benchmarks
 
@@ -154,7 +154,6 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 - [Bun](https://bun.sh/) - JavaScript runtime and package manager
 - [Rust](https://www.rust-lang.org/tools/install) - For building Rust-based parsers
 - [Zig](https://ziglang.org/download/) - For building Zig-based parsers (tested version recorded above)
-- A local [SWC Next](https://github.com/swc-project/swc-next) checkout next to this repository (`../swc-next`); the Rust suite uses path dependencies
 
 ### Steps
 
@@ -165,7 +164,7 @@ git clone https://github.com/yuku-toolchain/ecmascript-parser-benchmark-native.g
 cd ecmascript-parser-benchmark-native
 ```
 
-If SWC Next is not already checked out, run `git clone https://github.com/swc-project/swc-next.git ../swc-next`. To reproduce the recorded source, check out the SWC Next commit listed above in a clean sibling checkout. An existing local checkout is used as-is.
+SWC Next dependencies are pinned to the published crates.io release in `rust-next/Cargo.toml` and `rust-next/Cargo.lock`. Cargo downloads those registry packages; no sibling SWC Next repository or path dependency is used. Package versions, registry sources, and checksums are recorded in `result/metadata.json`.
 
 2. Install dependencies:
 

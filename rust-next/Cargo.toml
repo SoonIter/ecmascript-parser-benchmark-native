@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-# Keep swc-next next to this repository so the native suite uses the local checkout.
-swc_next_allocator = { path = "../../swc-next/crates/swc_allocator" }
-swc_next_ecma_ast = { path = "../../swc-next/crates/swc_ecma_ast" }
-swc_next_ecma_parser = { path = "../../swc-next/crates/swc_ecma_parser" }
-swc_next_ecma_semantic = { path = "../../swc-next/crates/swc_ecma_semantic" }
+# Benchmark the published crates.io release, without a local SWC Next checkout.
+swc_next_allocator = "=0.2.4"
+swc_next_ecma_ast = "=0.2.4"
+swc_next_ecma_parser = "=0.2.4"
+swc_next_ecma_semantic = "=0.2.4"
 
 mimalloc = { package = "mimalloc-safe", version = "0.1.52" }
 
