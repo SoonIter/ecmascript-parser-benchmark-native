@@ -10,14 +10,14 @@ Benchmarks for ECMAScript parsers compiled to native binaries (Zig, Rust), measu
 | CPU | Apple M5 Max |
 | Cores | 18 |
 | Memory | 64 GB |
-| Run started (UTC) | 2026-10-09T09:37:45.989Z |
+| Run started (UTC) | 2026-10-10T06:55:32.644Z |
 | Rust | rustc 1.98.0 (88d9e12ae 2026-08-18) |
 | Zig | 0.16.0 |
 | Bun | 1.4.0 |
 
-Oxc: `0.102.0`; SWC: `33.0.1`; SWC Next: `0.2.4` from [crates.io](https://crates.io/crates/swc_next_ecma_parser/0.2.4).
+Oxc: `0.153.0`; SWC: `46.0.0`; SWC Next: `0.2.4` from [crates.io](https://crates.io/crates/swc_next_ecma_parser/0.2.4).
 
-Yuku source: [pinned revision](https://github.com/yuku-toolchain/yuku/commit/4d29aa321e40cc1d04f561c58f25f56883489850). Fixture source: [`e25ab06730f743838b2c693d2126ea0162a661c6`](https://github.com/yuku-toolchain/parser-benchmark-files/commit/e25ab06730f743838b2c693d2126ea0162a661c6). Toolchain versions, input sizes and SHA-256 hashes, and binary hashes are saved in [result/metadata.json](result/metadata.json).
+Yuku `0.18.1` source: [pinned revision](https://github.com/yuku-toolchain/yuku/commit/c1fd5874d7f47999fe109f0dda61dd7b9a069138). Fixture source: [`e25ab06730f743838b2c693d2126ea0162a661c6`](https://github.com/yuku-toolchain/parser-benchmark-files/commit/e25ab06730f743838b2c693d2126ea0162a661c6). Toolchain versions, input sizes and SHA-256 hashes, and binary hashes are saved in [result/metadata.json](result/metadata.json).
 
 ## Parsers
 
@@ -55,10 +55,10 @@ The next-generation SWC parser, built from its published crates.io release.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next | 13.88 ms | 13.28 ms | 19.94 ms | 1.00× |
-| Yuku | 14.04 ms | 13.48 ms | 16.07 ms | 1.01× |
-| Oxc | 20.08 ms | 19.56 ms | 21.16 ms | 1.45× |
-| SWC | 33.13 ms | 32.25 ms | 42.55 ms | 2.39× |
+| SWC Next | 13.37 ms | 12.95 ms | 15.27 ms | 1.00× |
+| Yuku | 14.13 ms | 13.78 ms | 16.60 ms | 1.06× |
+| Oxc | 20.52 ms | 20.01 ms | 23.54 ms | 1.53× |
+| SWC | 29.21 ms | 28.54 ms | 32.95 ms | 2.19× |
 
 ### [checker.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/checker.ts)
 
@@ -68,10 +68,10 @@ The next-generation SWC parser, built from its published crates.io release.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku | 4.75 ms | 4.54 ms | 4.99 ms | 1.00× |
-| SWC Next | 4.79 ms | 4.52 ms | 6.21 ms | 1.01× |
-| Oxc | 6.64 ms | 6.37 ms | 7.93 ms | 1.40× |
-| SWC | 12.07 ms | 10.71 ms | 19.00 ms | 2.54× |
+| SWC Next | 4.68 ms | 4.39 ms | 5.22 ms | 1.00× |
+| Yuku | 4.97 ms | 4.78 ms | 5.23 ms | 1.06× |
+| Oxc | 6.50 ms | 6.19 ms | 7.80 ms | 1.39× |
+| SWC | 9.74 ms | 9.26 ms | 10.75 ms | 2.08× |
 
 ### [lib.dom.d.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/lib.dom.d.ts)
 
@@ -81,10 +81,10 @@ The next-generation SWC parser, built from its published crates.io release.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next | 1.46 ms | 1.40 ms | 2.04 ms | 1.00× |
-| Yuku | 1.72 ms | 1.61 ms | 1.78 ms | 1.17× |
-| Oxc | 1.84 ms | 1.79 ms | 2.04 ms | 1.26× |
-| SWC | 3.95 ms | 3.79 ms | 6.34 ms | 2.71× |
+| SWC Next | 1.43 ms | 1.35 ms | 1.50 ms | 1.00× |
+| Yuku | 1.77 ms | 1.69 ms | 1.92 ms | 1.24× |
+| Oxc | 1.86 ms | 1.75 ms | 2.68 ms | 1.31× |
+| SWC | 3.59 ms | 3.42 ms | 3.89 ms | 2.51× |
 
 ### [react.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/react.js)
 
@@ -94,10 +94,10 @@ The next-generation SWC parser, built from its published crates.io release.
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next | 0.07 ms | 0.06 ms | 0.14 ms | 1.00× |
-| Yuku | 0.08 ms | 0.08 ms | 0.12 ms | 1.19× |
-| Oxc | 0.13 ms | 0.12 ms | 0.23 ms | 1.91× |
-| SWC | 0.24 ms | 0.22 ms | 0.50 ms | 3.49× |
+| SWC Next | 0.07 ms | 0.07 ms | 0.12 ms | 1.00× |
+| Yuku | 0.08 ms | 0.08 ms | 0.14 ms | 1.21× |
+| Oxc | 0.12 ms | 0.11 ms | 0.18 ms | 1.78× |
+| SWC | 0.18 ms | 0.17 ms | 0.27 ms | 2.72× |
 
 ## Semantic
 
@@ -113,9 +113,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 26.91 ms | 26.08 ms | 32.87 ms | 1.00× |
-| Yuku + Semantic | 33.90 ms | 32.91 ms | 39.66 ms | 1.26× |
-| Oxc + Semantic | 45.80 ms | 44.52 ms | 47.97 ms | 1.70× |
+| SWC Next + Semantic | 26.51 ms | 25.78 ms | 29.72 ms | 1.00× |
+| Yuku + Semantic | 36.07 ms | 35.40 ms | 38.06 ms | 1.36× |
+| Oxc + Semantic | 36.53 ms | 35.76 ms | 40.16 ms | 1.38× |
 
 ### [checker.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/checker.ts)
 
@@ -123,9 +123,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 9.78 ms | 9.59 ms | 10.50 ms | 1.00× |
-| Yuku + Semantic | 12.04 ms | 11.76 ms | 12.53 ms | 1.23× |
-| Oxc + Semantic | 15.88 ms | 15.07 ms | 24.68 ms | 1.62× |
+| SWC Next + Semantic | 9.66 ms | 9.41 ms | 12.22 ms | 1.00× |
+| Oxc + Semantic | 12.22 ms | 11.88 ms | 12.78 ms | 1.26× |
+| Yuku + Semantic | 13.34 ms | 12.69 ms | 15.25 ms | 1.38× |
 
 ### [lib.dom.d.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/lib.dom.d.ts)
 
@@ -133,9 +133,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 2.63 ms | 2.54 ms | 3.71 ms | 1.00× |
-| Yuku + Semantic | 3.26 ms | 3.12 ms | 3.41 ms | 1.24× |
-| Oxc + Semantic | 3.76 ms | 3.67 ms | 4.11 ms | 1.43× |
+| SWC Next + Semantic | 2.55 ms | 2.42 ms | 2.91 ms | 1.00× |
+| Oxc + Semantic | 3.11 ms | 2.96 ms | 4.11 ms | 1.22× |
+| Yuku + Semantic | 3.62 ms | 3.50 ms | 4.22 ms | 1.42× |
 
 ### [react.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/e25ab06730f743838b2c693d2126ea0162a661c6/react.js)
 
@@ -143,9 +143,9 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| SWC Next + Semantic | 0.13 ms | 0.13 ms | 0.26 ms | 1.00× |
-| Yuku + Semantic | 0.20 ms | 0.18 ms | 0.26 ms | 1.51× |
-| Oxc + Semantic | 0.28 ms | 0.27 ms | 0.43 ms | 2.14× |
+| SWC Next + Semantic | 0.13 ms | 0.13 ms | 0.18 ms | 1.00× |
+| Oxc + Semantic | 0.21 ms | 0.20 ms | 0.30 ms | 1.63× |
+| Yuku + Semantic | 0.22 ms | 0.20 ms | 0.26 ms | 1.64× |
 
 ## Run Benchmarks
 
@@ -207,6 +207,6 @@ The source is read once, then each parser runs 50 warmup iterations followed by 
 
 SWC Next uses `NoTokenParserConfig`, `Lang::from_path` (including declaration-file mode for `.d.ts`), module mode, and the default comment and parenthesis handling. Its parser and semantic diagnostics are checked outside the timed region. Rust arena-based parsers create a fresh arena per iteration; Yuku retains arena capacity between iterations. Each suite keeps its parser's existing AST representation and defaults, so these are end-to-end parser API timings rather than identical AST workloads. All suites are rerun locally in sequence; historical timings are not mixed into the tables.
 
-SWC Next is built as a separate native binary in `rust-next/` because its allocator dependency conflicts with the version pinned by Oxc 0.102. The Rust binaries share the same measurement helper, release profile, and global allocator, and each has a committed Cargo lockfile.
+SWC Next is built as a separate native binary in `rust-next/`. The Rust binaries share the same measurement helper, release profile, and global allocator, and each has a committed Cargo lockfile.
 
 Binaries are built with release optimizations: Rust with `cargo build --release` (LTO, single codegen unit, symbol stripping) and Zig with `zig build --release=fast`. Each uses a fast general-purpose allocator (Rust `mimalloc`, Zig `smp_allocator`).

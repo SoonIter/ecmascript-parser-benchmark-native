@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-09T09:37:45.989Z",
+  "startedAt": "2026-10-10T06:55:32.644Z",
   "system": {
     "platform": "darwin",
     "release": "25.6.0",
@@ -14,8 +14,8 @@
     "zig": "0.16.0"
   },
   "parsers": {
-    "oxc_parser": "0.102.0",
-    "swc_ecma_parser": "33.0.1",
+    "oxc_parser": "0.153.0",
+    "swc_ecma_parser": "46.0.0",
     "swc_next_ecma_parser": "0.2.4"
   },
   "swcNext": {
@@ -108,7 +108,8 @@
       }
     ]
   },
-  "yuku": "git+https://github.com/yuku-toolchain/yuku/?ref=HEAD#4d29aa321e40cc1d04f561c58f25f56883489850",
+  "yukuVersion": "0.18.1",
+  "yuku": "git+https://github.com/yuku-toolchain/yuku/#c1fd5874d7f47999fe109f0dda61dd7b9a069138",
   "fixturesCommit": "e25ab06730f743838b2c693d2126ea0162a661c6",
   "warmup": 50,
   "runs": 300,
@@ -137,18 +138,18 @@
   "binaries": [
     {
       "path": "./bin/zig",
-      "sha256": "6aba4b50170bdc4be39cbc3ba4fa2e9a13e8be30bbfd2a06862a19658428a593"
+      "sha256": "d7cc4f3eaabbb0e2ef0580eefb474c5165e0904eb399d250328b2316953af6b7"
     },
     {
       "path": "./bin/rust",
-      "sha256": "b9f1a1591176059e5363d5471492487224baa0e789be790d198ad5f9520c151c"
+      "sha256": "d53216f4e80e7d0fae26899ad22951df0368f7ad6a0d24003e18b3387eca0624"
     },
     {
       "path": "./bin/swc-next",
       "sha256": "ea20d94d8f5c172a6d109b94f7ca87baa67c69b7debaaf71fa19e9b833d7eada"
     }
   ],
-  "cargoLockSha256": "78e995407ed2d93bf105e7febd5e4aaf6d8d1458a68222fe14ee702063a6e602",
+  "cargoLockSha256": "930eed1428ead4d2db652273cbbb07362bc316476bc5b33dc063074bb1233ebf",
   "swcNextCargoLockSha256": "f8f8cefa8aa2feb35f9c8fb591d94ea90e1bb3b80ec542006cae9ad910199cb8",
-  "completedAt": "2026-10-09T09:39:28.182Z"
+  "completedAt": "2026-10-10T06:57:06.763Z"
 }

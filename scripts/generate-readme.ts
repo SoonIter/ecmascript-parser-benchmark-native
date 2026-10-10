@@ -392,7 +392,7 @@ function getSystemInfo(metadata: BenchmarkMetadata): string {
 
 Oxc: \`${metadata.parsers.oxc_parser}\`; SWC: \`${metadata.parsers.swc_ecma_parser}\`; SWC Next: \`${metadata.parsers.swc_next_ecma_parser}\` from [crates.io](https://crates.io/crates/swc_next_ecma_parser/${metadata.parsers.swc_next_ecma_parser}).
 
-Yuku source: [pinned revision](${metadata.yuku.replace("git+", "").replace("/?ref=HEAD#", "/commit/")}). Fixture source: [\`${metadata.fixturesCommit}\`](https://github.com/yuku-toolchain/parser-benchmark-files/commit/${metadata.fixturesCommit}). Toolchain versions, input sizes and SHA-256 hashes, and binary hashes are saved in [result/metadata.json](result/metadata.json).`;
+Yuku \`${metadata.yukuVersion}\` source: [pinned revision](${metadata.yuku.replace("git+", "").replace(/\/(?:\?ref=HEAD)?#/, "/commit/")}). Fixture source: [\`${metadata.fixturesCommit}\`](https://github.com/yuku-toolchain/parser-benchmark-files/commit/${metadata.fixturesCommit}). Toolchain versions, input sizes and SHA-256 hashes, and binary hashes are saved in [result/metadata.json](result/metadata.json).`;
 }
 
 function generateRunSection(): string {
@@ -458,7 +458,7 @@ The source is read once, then each parser runs 50 warmup iterations followed by 
 
 SWC Next uses \`NoTokenParserConfig\`, \`Lang::from_path\` (including declaration-file mode for \`.d.ts\`), module mode, and the default comment and parenthesis handling. Its parser and semantic diagnostics are checked outside the timed region. Rust arena-based parsers create a fresh arena per iteration; Yuku retains arena capacity between iterations. Each suite keeps its parser's existing AST representation and defaults, so these are end-to-end parser API timings rather than identical AST workloads. All suites are rerun locally in sequence; historical timings are not mixed into the tables.
 
-SWC Next is built as a separate native binary in \`rust-next/\` because its allocator dependency conflicts with the version pinned by Oxc 0.102. The Rust binaries share the same measurement helper, release profile, and global allocator, and each has a committed Cargo lockfile.
+SWC Next is built as a separate native binary in \`rust-next/\`. The Rust binaries share the same measurement helper, release profile, and global allocator, and each has a committed Cargo lockfile.
 
 Binaries are built with release optimizations: Rust with \`cargo build --release\` (LTO, single codegen unit, symbol stripping) and Zig with \`zig build --release=fast\`. Each uses a fast general-purpose allocator (Rust \`mimalloc\`, Zig \`smp_allocator\`).`;
 }

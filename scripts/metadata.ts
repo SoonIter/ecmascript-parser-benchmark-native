@@ -35,6 +35,7 @@ export async function collectMetadata(paths: string[], binaries: readonly string
       registry: "crates.io",
       crates: swcNextCrates,
     },
+    yukuVersion: (await Bun.file("zig/build.zig.zon").text()).match(/\.hash = "yuku-([0-9.]+)-/)![1],
     yuku: (await Bun.file("zig/build.zig.zon").text()).match(/\.url = "([^"]+)"/)![1],
     fixturesCommit: command(["git", "rev-parse", "HEAD"], "files"),
     warmup: 50, runs: 300,
