@@ -41,9 +41,9 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku | 17.23 ms | 16.59 ms | 17.70 ms | 1.00× |
-| Oxc | 24.04 ms | 23.84 ms | 25.13 ms | 1.39× |
-| SWC | 42.17 ms | 40.96 ms | 46.41 ms | 2.45× |
+| Yuku | 18.04 ms | 17.97 ms | 21.10 ms | 1.00× |
+| Oxc | 25.11 ms | 24.51 ms | 31.80 ms | 1.39× |
+| SWC | 43.26 ms | 42.57 ms | 47.32 ms | 2.40× |
 
 ### [checker.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/checker.ts)
 
@@ -53,9 +53,9 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku | 5.72 ms | 5.51 ms | 5.81 ms | 1.00× |
-| Oxc | 7.82 ms | 7.75 ms | 8.65 ms | 1.37× |
-| SWC | 13.65 ms | 13.09 ms | 17.93 ms | 2.39× |
+| Yuku | 6.12 ms | 6.07 ms | 8.85 ms | 1.00× |
+| Oxc | 7.99 ms | 7.93 ms | 8.52 ms | 1.30× |
+| SWC | 14.18 ms | 13.76 ms | 16.04 ms | 2.32× |
 
 ### [lib.dom.d.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/lib.dom.d.ts)
 
@@ -65,9 +65,9 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku | 2.19 ms | 2.16 ms | 2.42 ms | 1.00× |
-| Oxc | 2.33 ms | 2.31 ms | 2.89 ms | 1.06× |
-| SWC | 4.82 ms | 4.71 ms | 5.38 ms | 2.20× |
+| Oxc | 2.35 ms | 2.32 ms | 2.49 ms | 1.00× |
+| Yuku | 2.36 ms | 2.30 ms | 5.66 ms | 1.01× |
+| SWC | 4.92 ms | 4.82 ms | 5.23 ms | 2.09× |
 
 ### [react.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/react.js)
 
@@ -77,9 +77,9 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku | 0.10 ms | 0.10 ms | 0.11 ms | 1.00× |
-| Oxc | 0.16 ms | 0.16 ms | 0.17 ms | 1.53× |
-| SWC | 0.27 ms | 0.27 ms | 0.29 ms | 2.60× |
+| Yuku | 0.11 ms | 0.11 ms | 0.15 ms | 1.00× |
+| Oxc | 0.16 ms | 0.16 ms | 0.17 ms | 1.47× |
+| SWC | 0.29 ms | 0.28 ms | 0.36 ms | 2.60× |
 
 ## Semantic
 
@@ -95,8 +95,8 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku + Semantic | 40.85 ms | 40.09 ms | 41.75 ms | 1.00× |
-| Oxc + Semantic | 55.44 ms | 53.81 ms | 98.77 ms | 1.36× |
+| Yuku + Semantic | 44.21 ms | 43.40 ms | 58.75 ms | 1.00× |
+| Oxc + Semantic | 56.34 ms | 55.20 ms | 66.79 ms | 1.27× |
 
 ### [checker.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/checker.ts)
 
@@ -104,8 +104,8 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku + Semantic | 14.45 ms | 14.15 ms | 15.57 ms | 1.00× |
-| Oxc + Semantic | 18.24 ms | 18.07 ms | 20.38 ms | 1.26× |
+| Yuku + Semantic | 15.88 ms | 15.55 ms | 23.06 ms | 1.00× |
+| Oxc + Semantic | 18.58 ms | 18.35 ms | 19.67 ms | 1.17× |
 
 ### [lib.dom.d.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/lib.dom.d.ts)
 
@@ -113,8 +113,8 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku + Semantic | 4.07 ms | 4.01 ms | 4.34 ms | 1.00× |
-| Oxc + Semantic | 4.70 ms | 4.58 ms | 6.78 ms | 1.15× |
+| Yuku + Semantic | 4.72 ms | 4.43 ms | 13.02 ms | 1.00× |
+| Oxc + Semantic | 4.76 ms | 4.70 ms | 5.69 ms | 1.01× |
 
 ### [react.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/react.js)
 
@@ -122,8 +122,8 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
-| Yuku + Semantic | 0.25 ms | 0.25 ms | 0.26 ms | 1.00× |
-| Oxc + Semantic | 0.35 ms | 0.34 ms | 0.42 ms | 1.37× |
+| Yuku + Semantic | 0.27 ms | 0.27 ms | 0.33 ms | 1.00× |
+| Oxc + Semantic | 0.35 ms | 0.35 ms | 0.44 ms | 1.29× |
 
 ## Run Benchmarks
 
