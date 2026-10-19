@@ -5,12 +5,12 @@ edition = "2024"
 
 [dependencies]
 # Benchmark the published crates.io release, without a local SWC Next checkout.
-swc_next_allocator = "=0.2.4"
-swc_next_ecma_ast = "=0.2.4"
-swc_next_ecma_parser = "=0.2.4"
-swc_next_ecma_semantic = "=0.2.4"
+swc_next_allocator = "=0.3.0"
+swc_next_ecma_ast = "=0.3.0"
+swc_next_ecma_parser = "=0.3.0"
+swc_next_ecma_semantic = "=0.3.0"
 
-mimalloc = { package = "mimalloc-safe", version = "0.1.52" }
+mimalloc = { package = "mimalloc-safe", version = "0.1.67" }
 
 [profile.release]
 opt-level     = 3

@@ -326,7 +326,7 @@ async function generateSemanticSection(): Promise<string> {
   );
   lines.push("");
   lines.push(
-    `The benchmarks below measure parsing followed by this additional pass, which builds scopes and symbols, resolves identifier references, and checks scope-dependent early errors. Oxc enables \`with_check_syntax_error(true)\`; SWC Next enables \`AnalyzeOptions::check_syntax\`. These timings do not establish equivalent conformance coverage.`,
+    `The benchmarks below measure parsing followed by this additional pass, which builds scopes and symbols, resolves identifier references, and checks scope-dependent early errors. Oxc enables \`with_check_syntax_error(true)\`; SWC Next uses \`AnalyzeOptions { check_syntax: SyntaxChecks::all(), ..Default::default() }\` (module-record collection remains disabled). These timings do not establish equivalent conformance coverage.`,
   );
   lines.push("");
 
@@ -402,7 +402,7 @@ function generateRunSection(): string {
 
 - [Bun](https://bun.sh/) - JavaScript runtime and package manager
 - [Rust](https://www.rust-lang.org/tools/install) - For building Rust-based parsers
-- [Zig](https://ziglang.org/download/) - For building Zig-based parsers (tested version recorded above)
+- [Zig](https://ziglang.org/download/) 0.17.0 - Required by Yuku 0.19.0
 
 ### Steps
 

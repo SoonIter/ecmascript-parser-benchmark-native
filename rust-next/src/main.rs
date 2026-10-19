@@ -4,7 +4,7 @@ use std::time::Instant;
 use swc_next_allocator::Allocator as SwcNextAllocator;
 use swc_next_ecma_ast::Lang;
 use swc_next_ecma_parser::{NoTokenParserConfig, Options, Parser as SwcNextParser};
-use swc_next_ecma_semantic::{AnalyzeOptions, analyze};
+use swc_next_ecma_semantic::{AnalyzeOptions, SyntaxChecks, analyze};
 
 #[global_allocator]
 static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
@@ -27,7 +27,7 @@ fn bench_swc_next(src: &str, lang: Lang, semantic: bool) -> Stats {
             analyze(
                 &ret.ast,
                 AnalyzeOptions {
-                    check_syntax: true,
+                    check_syntax: SyntaxChecks::all(),
                     ..Default::default()
                 },
             )

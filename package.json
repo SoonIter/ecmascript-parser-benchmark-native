@@ -13,8 +13,8 @@
 		"update-parsers": "cd rust && cargo update && cd .. && cd zig && zig fetch --save git+https://github.com/yuku-toolchain/yuku/#HEAD"
 	},
 	"devDependencies": {
-		"@types/bun": "latest",
-		"@types/node": "^25.0.10"
+		"@types/bun": "^1.4.3",
+		"@types/node": "^26.6.5"
 	},
 	"dependencies": {
 		"chart.js": "^4.5.1",
