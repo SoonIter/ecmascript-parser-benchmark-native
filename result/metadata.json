@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-16T07:51:57.643Z",
+  "startedAt": "2026-10-19T11:34:08.628Z",
   "system": {
     "platform": "darwin",
     "release": "25.6.0",
@@ -16,16 +16,16 @@
   "parsers": {
     "oxc_parser": "0.154.0",
     "swc_ecma_parser": "46.1.1",
-    "swc_next_ecma_parser": "0.3.0"
+    "swc_next_ecma_parser": "0.3.1"
   },
   "swcNext": {
     "registry": "crates.io",
     "crates": [
       {
         "name": "swc_next_allocator",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "checksum": "a349d5392d5353ec25823156a7b7c40a818fb05f9d5f43be3c2ce74e53651f60",
+        "checksum": "cc5be81841a7b9f62c74ca4f281a9879d4dffc583562f48e6233f2f008795eb1",
         "dependencies": [
           "allocator-api2",
           "bumpalo",
@@ -35,9 +35,9 @@
       },
       {
         "name": "swc_next_ast_macros",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "checksum": "7cfd5bc38ef1da4221abed5c45f03be4b69803ac53d3ab16a6c28374e6176a63",
+        "checksum": "c7dd11f58f7a9194bce169d53c553dc052553760416f78578112d1ec71e2945d",
         "dependencies": [
           "proc-macro2",
           "quote",
@@ -46,10 +46,12 @@
       },
       {
         "name": "swc_next_ecma_ast",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "checksum": "426ffe2137865aaa7cb65bbccbc99b1d37205eb775be8767f845fa7329b0996f",
+        "checksum": "12d5ea9d2c4cf3aceb9ebeb009466e91f2ebef50b7105974a998bb97593fe8ed",
         "dependencies": [
+          "cow-utils",
+          "num-bigint",
           "oxc_index",
           "swc_next_allocator",
           "swc_next_ast_macros",
@@ -58,9 +60,9 @@
       },
       {
         "name": "swc_next_ecma_parser",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "checksum": "5da102150f7f9a21ea4cb42d05da147badfb54ae39ea7c722b465a61b0ada633",
+        "checksum": "2bb7e75e3a935374351716446644442195e9c675516d65a85802dda2e8677d09",
         "dependencies": [
           "bitflags",
           "memchr",
@@ -73,9 +75,9 @@
       },
       {
         "name": "swc_next_ecma_semantic",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "checksum": "8dd69734ae802b96d7eaf924f9e01706b286161d9ef46e29cd44f2f432cb761c",
+        "checksum": "53271ed694930fb087c1b48c489759ac19af50dfd390fbdefdf8a51115e03555",
         "dependencies": [
           "bitflags",
           "hashbrown",
@@ -90,9 +92,9 @@
       },
       {
         "name": "swc_next_regular_expression",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "checksum": "ccf170d303015b83a3fcfb896fd0bd156726973ae6b974030643db88e474bd86",
+        "checksum": "028b398190d3b39a04879936dc8ad48b0873a12665a9c0624157e8c2fb150fc8",
         "dependencies": [
           "bitflags",
           "phf",
@@ -103,14 +105,14 @@
       },
       {
         "name": "swc_next_simd",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "source": "registry+https://github.com/rust-lang/crates.io-index",
-        "checksum": "c07f9a9b3e69d5090af16380fc693359b01f37a4636e53473c1371ab8998591c"
+        "checksum": "ffd391fabb635c553472780d617371b63d1bcba462e6379f0abc607d76ac0e16"
       }
     ]
   },
-  "yukuVersion": "0.19.0",
-  "yuku": "git+https://github.com/yuku-toolchain/yuku/#f8496bd8dfd52ae528ade3bfe4c1ea57d1bde635",
+  "yukuVersion": "0.20.1",
+  "yuku": "git+https://github.com/yuku-toolchain/yuku/#e68066ff291d2fe43c727054f03636f4a633596b",
   "fixturesCommit": "e25ab06730f743838b2c693d2126ea0162a661c6",
   "warmup": 50,
   "runs": 300,
@@ -139,18 +141,18 @@
   "binaries": [
     {
       "path": "./bin/zig",
-      "sha256": "c0f672d8986fa13ac1000e90ec77be6bc34422613c6ab68bc33c776f98a16b5f"
+      "sha256": "058986ba3a84444dbfe5b40f4563b981e6278ca96137bd64c2c315398cdab0f8"
     },
     {
       "path": "./bin/rust",
-      "sha256": "0bcfb2610a2bbe0729f879a408d43995f3678e63a6d74ce6378f934522a4ac8a"
+      "sha256": "d862f930c39a5582f466a4e6c0270c2656856c1c7d8917d8e65fc9e61675ffb8"
     },
     {
       "path": "./bin/swc-next",
-      "sha256": "9cc3e90988a0b5fb36605b9bf732b1c7fd87c84a17070913dc4a7d72eea6039f"
+      "sha256": "0bae07410a089807b450c65f4c44568cb40b2ff44d7e8f27f4621ad63d956e2f"
     }
   ],
-  "cargoLockSha256": "2758a01ed0e6b2b43500a40fc9dddccf95ef772d18c9ca811d12e0bed607b175",
-  "swcNextCargoLockSha256": "e7bd8c85a5959ef9694f17a9b6ec04d25bdae92358a0ebfd983e6e289f5b07d6",
-  "completedAt": "2026-10-16T07:53:39.345Z"
+  "cargoLockSha256": "e04b4d00e37db3ba33f869eed4af2b227f3402546c2ab48b29dc1a04e6bf61a9",
+  "swcNextCargoLockSha256": "0555bb7ee838f2768e4e35b9422d0bec0d958cf5124a439a4a62bbbe4407edbb",
+  "completedAt": "2026-10-19T11:35:43.229Z"
 }

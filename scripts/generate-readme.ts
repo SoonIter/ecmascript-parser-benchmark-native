@@ -402,7 +402,7 @@ function generateRunSection(): string {
 
 - [Bun](https://bun.sh/) - JavaScript runtime and package manager
 - [Rust](https://www.rust-lang.org/tools/install) - For building Rust-based parsers
-- [Zig](https://ziglang.org/download/) 0.17.0 - Required by Yuku 0.19.0
+- [Zig](https://ziglang.org/download/) ${metadata.toolchains.zig} - Required by Yuku ${metadata.yukuVersion}
 
 ### Steps
 
@@ -457,6 +457,8 @@ Parsing is timed in-process to isolate it from process startup, dynamic linking,
 The source is read once, then each parser runs 50 warmup iterations followed by 300 timed iterations. A monotonic clock wraps parser construction and parsing (plus the semantic pass for the semantic variants). Arena construction and teardown happen outside the timed region; allocations performed during parsing remain timed. The result passes through an optimization barrier so the work cannot be elided. Reported figures are the median, minimum, and 99th percentile of the timed runs.
 
 SWC Next uses \`NoTokenParserConfig\`, \`Lang::from_path\` (including declaration-file mode for \`.d.ts\`), module mode, and the default comment and parenthesis handling. Its parser and semantic diagnostics are checked outside the timed region. Rust arena-based parsers create a fresh arena per iteration; Yuku retains arena capacity between iterations. Each suite keeps its parser's existing AST representation and defaults, so these are end-to-end parser API timings rather than identical AST workloads. All suites are rerun locally in sequence; historical timings are not mixed into the tables.
+
+SWC retains the historical TypeScript module parsing options for declaration files. On this fixture, \`lib.dom.d.ts\` returns the complete AST (2,805 top-level items) with two recoverable \`EvalAndArgumentsInStrict\` diagnostics for \`...arguments\` parameters. Its timing includes this recovery work. The input, parser version, and harness match the baseline; this is an existing mode limitation, and syntax checks remain enabled.
 
 SWC Next is built as a separate native binary in \`rust-next/\`. The Rust binaries share the same measurement helper, release profile, and global allocator, and each has a committed Cargo lockfile.
 
