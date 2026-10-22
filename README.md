@@ -37,7 +37,7 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 **File size:** 7.83 MB
 
-![Bar chart comparing native parser speeds for typescript.js](charts/typescript.png)
+![Bar chart comparing native parser speeds for typescript.js](charts/typescript.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
@@ -49,7 +49,7 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 **File size:** 2.95 MB
 
-![Bar chart comparing native parser speeds for checker.ts](charts/checker.png)
+![Bar chart comparing native parser speeds for checker.ts](charts/checker.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
@@ -61,7 +61,7 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 **File size:** 2.24 MB
 
-![Bar chart comparing native parser speeds for lib.dom.d.ts](charts/lib_dom.png)
+![Bar chart comparing native parser speeds for lib.dom.d.ts](charts/lib_dom.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
@@ -73,7 +73,7 @@ An extensible Rust-based platform for compiling and bundling JavaScript and Type
 
 **File size:** 0.07 MB
 
-![Bar chart comparing native parser speeds for react.js](charts/react.png)
+![Bar chart comparing native parser speeds for react.js](charts/react.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
@@ -91,7 +91,7 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 ### [typescript.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/typescript.js)
 
-![Bar chart comparing parser speeds with semantic analysis for typescript.js](charts/typescript_semantic.png)
+![Bar chart comparing parser speeds with semantic analysis for typescript.js](charts/typescript_semantic.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
@@ -100,7 +100,7 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 ### [checker.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/checker.ts)
 
-![Bar chart comparing parser speeds with semantic analysis for checker.ts](charts/checker_semantic.png)
+![Bar chart comparing parser speeds with semantic analysis for checker.ts](charts/checker_semantic.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
@@ -109,7 +109,7 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 ### [lib.dom.d.ts](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/lib.dom.d.ts)
 
-![Bar chart comparing parser speeds with semantic analysis for lib.dom.d.ts](charts/lib_dom_semantic.png)
+![Bar chart comparing parser speeds with semantic analysis for lib.dom.d.ts](charts/lib_dom_semantic.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
@@ -118,7 +118,7 @@ The benchmarks below measure parsing followed by this additional pass, which bui
 
 ### [react.js](https://raw.githubusercontent.com/yuku-toolchain/parser-benchmark-files/refs/heads/main/react.js)
 
-![Bar chart comparing parser speeds with semantic analysis for react.js](charts/react_semantic.png)
+![Bar chart comparing parser speeds with semantic analysis for react.js](charts/react_semantic.svg)
 
 | Parser | Median | Min | p99 | Relative |
 |--------|--------|-----|-----|----------|
