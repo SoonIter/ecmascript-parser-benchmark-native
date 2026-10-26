@@ -1,8 +1,8 @@
 {
 	"name": "ecmascript-parser-benchmark-native",
 	"devDependencies": {
-		"@types/bun": "latest",
-		"@types/node": "^25.0.10"
+		"@types/bun": "^1.4.4",
+		"@types/node": "^26.6.5"
 	},
 	"private": true,
 	"scripts": {

@@ -5,8 +5,8 @@
     .fingerprint = 0xa1bd1b16d2a0c0b3,
     .dependencies = .{
         .yuku = .{
-            .url = "git+https://github.com/yuku-toolchain/yuku/#bb688a808dcfe6dc55805b03de58090009ef54fb",
-            .hash = "yuku-0.23.0-m6ranvSIEgB7-H8Tzx9rIwJromaEO05PvvZTe03ex0yM",
+            .url = "git+https://github.com/yuku-toolchain/yuku/#d5b824f760769832ab0f732817188e04049e8477",
+            .hash = "yuku-0.24.0-m6ransiIEgD-n5PikYFjbIkZm3K-yZ5QzKaq94ZxYQ0f",
         },
     },
     .paths = .{

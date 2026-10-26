@@ -12,12 +12,12 @@ oxc_span = "0.155.0"
 swc_ecma_parser = { version = "46.1.2", features = ["typescript"] }
 swc_common = "26.0.0"
 
-swc_next_allocator = "=0.3.2"
-swc_next_ecma_ast = "=0.3.2"
-swc_next_ecma_parser = "=0.3.2"
-swc_next_ecma_semantic = "=0.3.2"
+swc_next_allocator = "=0.4.0"
+swc_next_ecma_ast = "=0.4.0"
+swc_next_ecma_parser = "=0.4.0"
+swc_next_ecma_semantic = "=0.4.0"
 
-mimalloc = { package = "mimalloc-safe", version = "0.1.52" }
+mimalloc = { package = "mimalloc-safe", version = "0.1.68" }
 
 [profile.release]
 opt-level     = 3
