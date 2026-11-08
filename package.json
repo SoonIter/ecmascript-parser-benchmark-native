@@ -6,8 +6,9 @@
 	},
 	"private": true,
 	"scripts": {
-		"bench": "bun scripts/run-bench.ts && bun readme",
+		"bench": "bun run generate:ast-cache && bun scripts/run-bench.ts && bun readme",
 		"load-files": "bun scripts/load-files.ts",
+		"generate:ast-cache": "bun scripts/generate-ast-cache.ts",
 		"build": "bun build:zig && bun build:rust",
 		"build:zig": "cd zig && zig build --release=fast && mkdir -p ../bin && cp ./zig-out/bin/zig ../bin/zig",
 		"build:rust": "cd rust && cargo build --release && mkdir -p ../bin && cp ./target/release/rust_parsers ../bin/rust",

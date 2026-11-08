@@ -186,6 +186,10 @@ This will run benchmarks on all test files. Results are saved to the `result/` d
 
 Parsing is timed in-process to isolate it from process startup, dynamic linking, file I/O, and memory teardown, which would otherwise dominate the measurement on smaller files.
 
-The source is read once, then each parser runs 50 warmup iterations followed by 300 timed iterations. A monotonic clock wraps only the parse call (plus the semantic pass for the semantic variants); allocation and teardown happen outside the timed region, and the result passes through an optimization barrier so the work cannot be elided. Reported figures are the median, minimum, and 99th percentile of the timed runs.
+The source is read once, then each parser runs 50 warmup iterations followed by 300 timed iterations. A monotonic clock wraps the parse call (plus the semantic pass for the semantic variants), and the result passes through an optimization barrier so the work cannot be elided. Parser-owned allocations performed during parsing are included in the timed interval; allocator setup and returned-tree teardown happen outside it. Reported figures are the median, minimum, and 99th percentile of the timed runs.
+
+Before timing, the script generates Oxc AST baselines in the ignored `.cache/ecmascript-parser-benchmark-native/ast.json` file. Rust preflight checks every file: each parser must parse without diagnostics, semantic variants must pass syntax checks, and normalized node types and source spans must match. It also checks the full-file span, typed-identifier and annotation spans when source text confirms their boundary, and template-literal spans against delimiters, expressions, and raw text. Only equivalent node shapes are normalized. Any mismatch stops timing. Zig keeps its existing parse and semantic checks.
+
+Arena-backed parsers use a fresh arena for each parse. Other parsers use their API's allocator. This aligns reuse policy where possible, but allocator backends may still differ.
 
 Binaries are built with release optimizations: Rust with `cargo build --release` (LTO, single codegen unit, symbol stripping) and Zig with `zig build --release=fast`. Each uses a fast general-purpose allocator (Rust `mimalloc`, Zig `smp_allocator`).
