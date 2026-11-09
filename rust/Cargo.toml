@@ -5,12 +5,16 @@ edition = "2024"
 
 [dependencies]
 oxc_allocator = "0.155.0"
+oxc_ast = { version = "0.155.0", features = ["serialize"] }
+oxc_ast_visit = "0.155.0"
 oxc_parser = "0.155.0"
 oxc_semantic = "0.155.0"
 oxc_span = "0.155.0"
 
 swc_ecma_parser = { version = "46.1.2", features = ["typescript"] }
 swc_common = "26.0.0"
+swc_ecma_ast = { version = "29.0.2", features = ["serde-impl"] }
+serde_json = "1.0"
 
 swc_next_allocator = "=0.4.0"
 swc_next_ecma_ast = "=0.4.0"

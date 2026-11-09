@@ -18,19 +18,18 @@ fn bench(io: std.Io, comptime case: Case, source: []const u8, path: []const u8) 
         .source_type = .fromPath(path),
     };
 
-    var gpa = std.heap.ArenaAllocator.init(std.heap.smp_allocator);
-    defer gpa.deinit();
-
     for (0..warmup_runs) |_| {
+        var gpa = std.heap.ArenaAllocator.init(std.heap.smp_allocator);
         var tree = try parser.parse(gpa.allocator(), source, opts);
         if (case == .semantic) _ = try parser.semantic.analyze(&tree, .{ .check = true });
         std.mem.doNotOptimizeAway(tree.nodes.len);
         tree.deinit();
-        _ = gpa.reset(.retain_capacity);
+        gpa.deinit();
     }
 
     var samples: [measured_runs]u64 = undefined;
     for (&samples) |*sample| {
+        var gpa = std.heap.ArenaAllocator.init(std.heap.smp_allocator);
         const start = std.Io.Clock.now(.awake, io);
         var tree = try parser.parse(gpa.allocator(), source, opts);
         if (case == .semantic) _ = try parser.semantic.analyze(&tree, .{ .check = true });
@@ -38,7 +37,7 @@ fn bench(io: std.Io, comptime case: Case, source: []const u8, path: []const u8) 
 
         std.mem.doNotOptimizeAway(tree.nodes.len);
         tree.deinit();
-        _ = gpa.reset(.retain_capacity);
+        gpa.deinit();
         sample.* = @intCast(start.durationTo(end).toNanoseconds());
     }
 
